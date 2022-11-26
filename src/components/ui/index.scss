@@ -1,0 +1,51 @@
+$color: #ff0088;
+$color-highlight: "ff4444";
+$white: #ffffff;
+
+button.ui-button {
+  cursor: pointer;
+  color: #515151;
+  &.ui-button-link {
+    border: none;
+    background-color: transparent;
+  }
+  &.ui-button-submit {
+    background-color: $color;
+    border-radius: 10px;
+    width: 300px;
+    height: 50px;
+    color: $white;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      background-color: $color-highlight;
+    }
+  }
+}
+
+.ui-input {
+  width: 350px;
+  height: 50px;
+  font-size: 22px;
+  border: 2px solid $color;
+  border-radius: 10px;
+  text-align: center;
+  &:focus {
+    border: 2px solid transparent;
+    outline: 2px solid $color-highlight;
+  }
+  &.ui-input-files {
+    label {
+      width: 350px;
+      height: 50px;
+      font-size: 22px;
+      text-align: center;
+      display: block;
+    }
+    input {
+      visibility: hidden;
+    }
+  }
+}
