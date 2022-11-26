@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector, loginPassword, ELoginState } from '../../store';
 
-// import styles from './login.module.scss';
 import './login-page.scss';
 
 import { ButtonSubmit, InputEmail, InputPassword } from '../../components/ui';
@@ -12,7 +11,6 @@ import { ButtonSubmit, InputEmail, InputPassword } from '../../components/ui';
 export const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
     const loginState = useSelector(state => (state.loginState))
     const [email, setEmail] = useState<string>('');

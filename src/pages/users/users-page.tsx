@@ -4,11 +4,7 @@ import { Button } from '../../components/ui';
 import { EUserRole } from '../../service/api';
 import { useDispatch, useSelector, deleteUser } from '../../store';
 
-// import styles from './login.module.scss';
 import './users-page.scss';
-
-// import { ButtonSubmit, InputEmail, InputPassword } from '../../components/ui';
-
 
 export const UsersPage = () => {
     const dispatch = useDispatch();

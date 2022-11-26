@@ -98,7 +98,6 @@ export const UserPage = () => {
                         setValue={setPassword}
                     />
                     {isAdmin && newUser ? <ButtonSubmit onClick={onAdd} label="Add" /> : <ButtonSubmit onClick={onUpdate} label="Update" />}
-
                     <ButtonSubmit onClick={onReset} label="Reset" />
                 </Form>
             </div>
