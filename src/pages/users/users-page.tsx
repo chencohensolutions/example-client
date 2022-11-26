@@ -26,12 +26,14 @@ export const UsersPage = () => {
         dispatch(deleteUser(userId))
     }
 
+
     return (
         <div id="page-users" className="page">
             <div className="page-container">
+                {isAdmin && <Link to="/users/new">Create</Link>}
                 <table>
                     <tbody>
-                        {users.map((userRecord) => (<tr>
+                        {users.map((userRecord) => (<tr key={userRecord._id}>
                             <td>{userRecord.email}</td>
                             <td>{userRecord.name}</td>
                             <td>{userRecord.role}</td>

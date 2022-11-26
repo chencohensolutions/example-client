@@ -41,6 +41,12 @@ export interface IUserUpdate extends IUser {
   password: string;
 }
 
+export interface IUserAdd {
+  role: EUserRole;
+  name: string;
+  email: string;
+  password: string;
+}
 interface IUpdateUserResponse {
   users: IUser[] | null;
 }
@@ -119,6 +125,13 @@ const api = {
       return { users: res.data.users };
     }
     return { users: null };
+  },
+  addUser: async (user: IUserAdd) => {
+    const res = await axiosInstance.put("/users", user);
+    if (res && res.data) {
+      return { users: res.data.users, _id: res.data._id };
+    }
+    return { users: [], _id: null };
   },
 };
 

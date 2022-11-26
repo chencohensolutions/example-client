@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Button } from './components/ui';
 
 import { Navigator } from './routes';
-import { useSelector, useDispatch, loginToken } from './store';
+import { useSelector, useDispatch, loginToken, logout } from './store';
 
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const tokenExpired = useSelector(state => (state.tokenExpired))
+  const isLoggedin = useSelector(state => (state.isLoggedin))
 
 
   useEffect(() => {
@@ -24,9 +26,13 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onLogout = () => {
+    dispatch(logout())
+  }
 
   return (
     <div id="page-wrapper">
+      {isLoggedin && <Button onClick={onLogout} label='logout' />}
       <Navigator />
     </div>
   );

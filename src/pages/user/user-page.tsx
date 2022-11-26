@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ButtonSubmit, Form, IItem, InputEmail, InputPassword, InputSelect, InputText } from '../../components/ui';
 import { EUserRole, IUser } from '../../service/api';
-import { useDispatch, useSelector, updateUser } from '../../store';
+import { useDispatch, useSelector, updateUser, addUser } from '../../store';
 import './user-page.scss';
 
 const rolesListTypes: IItem[] = [
@@ -19,15 +19,26 @@ const rolesListTypes: IItem[] = [
     },
 ];
 
+const blankUser: IUser = { _id: '', name: '', email: '', role: EUserRole.USER }
+
+
 export const UserPage = () => {
     const dispatch = useDispatch();
     const { userId } = useParams();
+    const navigate = useNavigate();
+
+    const newUser = userId === 'new';
+
     const user = useSelector(state => {
         const findUser = state.users.find(({ _id }) => (_id === userId))
-        const blankUser: IUser = { _id: '', name: '', email: '', role: EUserRole.USER }
         return (findUser) ? findUser as IUser : blankUser
     })
+
+
     const userRole = useSelector(state => state.role);
+    const isAdmin = userRole === EUserRole.ADMIN;
+    const isUser = userRole === EUserRole.USER;
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState<EUserRole>(EUserRole.USER);
@@ -43,7 +54,13 @@ export const UserPage = () => {
     const onUpdate = () => {
         const { _id } = user;
         dispatch(updateUser({ _id, email, password, name, role }))
+        navigate('/users');
 
+    }
+
+    const onAdd = () => {
+        dispatch(addUser({ email, password, name, role }))
+        navigate('/users');
     }
 
     useEffect(() => {
@@ -56,7 +73,7 @@ export const UserPage = () => {
                 <Form>
                     <InputEmail
                         id="user_email"
-                        disabled={userRole === EUserRole.USER}
+                        disabled={isUser}
                         placeholder="Email"
                         name="user_email"
                         value={email}
@@ -64,23 +81,24 @@ export const UserPage = () => {
                     />
                     <InputText
                         id="user_name"
-                        disabled={userRole === EUserRole.USER}
+                        disabled={isUser}
                         placeholder="name"
                         autoComplete={false}
                         name="user_name"
                         value={name}
                         setValue={setName}
                     />
-                    <InputSelect id="type" name="role" value={role} setValue={setRole} list={rolesListTypes} placeholder="Role" />
+                    <InputSelect id="type" name="role" disabled={isUser} value={role} setValue={setRole} list={rolesListTypes} placeholder="Role" />
                     <InputPassword
                         id="user_password"
-                        disabled={userRole === EUserRole.USER}
+                        disabled={isUser}
                         placeholder="Password"
                         name="user_password"
                         value={password}
                         setValue={setPassword}
                     />
-                    <ButtonSubmit onClick={onUpdate} label="Update" />
+                    {isAdmin && newUser ? <ButtonSubmit onClick={onAdd} label="Add" /> : <ButtonSubmit onClick={onUpdate} label="Update" />}
+
                     <ButtonSubmit onClick={onReset} label="Reset" />
                 </Form>
             </div>

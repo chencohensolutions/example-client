@@ -131,12 +131,14 @@ export const InputSelect = ({
     list,
     id,
     placeholder,
+    disabled,
     isNumber = false,
 }: IInputSelect) => (
     <select
         className={'ui-input ui-input-select ' + className}
         id={id}
         name={name}
+        disabled={disabled}
         value={value}
         title={placeholder}
         onChange={event => {
