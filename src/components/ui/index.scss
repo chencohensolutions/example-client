@@ -5,6 +5,7 @@ $white: #ffffff;
 button.ui-button {
   cursor: pointer;
   color: #515151;
+  margin-top: 20px;
   &.ui-button-link {
     border: none;
     background-color: transparent;
@@ -26,6 +27,7 @@ button.ui-button {
 }
 
 .ui-input {
+  margin-top: 20px;
   width: 350px;
   height: 50px;
   font-size: 22px;

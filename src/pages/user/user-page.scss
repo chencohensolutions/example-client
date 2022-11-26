@@ -1,6 +1,14 @@
-#page-login.page {
-  max-width: 1920px;
-  margin: 0 auto;
+#page-user.page {
+  display: flex;
   align-items: center;
   justify-content: center;
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }

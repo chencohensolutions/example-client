@@ -68,7 +68,7 @@ export const UserPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
     return (
-        <div id="page-users" className="page">
+        <div id="page-user" className="page">
             <div className="page-container">
                 <Form>
                     <InputEmail
