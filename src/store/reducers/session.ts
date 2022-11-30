@@ -30,7 +30,9 @@ interface IUserState {
   newUserId: null;
 }
 
-export const logout = createAction("session/logout");
+export const logout = createAction("session/logout", () => ({
+  payload: api.logout(),
+}));
 
 export const loginPassword = createAsyncThunk(
   "session/loginPassword",

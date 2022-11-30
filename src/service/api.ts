@@ -93,13 +93,13 @@ const api = {
         return res.data;
       }
     } catch (err) {
-      localStorage.removeItem("token");
+      localStorage.removeItem("access_token");
       throw err;
     }
   },
-  logout: async () => {
+  logout: () => {
     axiosInstance.defaults.headers.common["Authorization"] = "";
-    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
   },
   updateUser: async ({
     _id,
