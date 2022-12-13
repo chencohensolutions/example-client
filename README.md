@@ -1,1 +1,1 @@
-# ktrust-client
+# example-client
